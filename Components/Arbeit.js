@@ -11,7 +11,7 @@ const Arbeit = ({ image, setFocus, mouseContent, setMouseContent }) => {
   return (
     <div className="arbeitWrapper">
       <ul className="workInfo">
-        <li>"{image.werkangaben.titel}"</li>
+        <li>»{image.werkangaben.titel}«</li>
         <li>{image.werkangaben.untertitel}</li>
         <li>{image.werkangaben.jahr}</li>
         <li>{image.werkangaben.medium}</li>
