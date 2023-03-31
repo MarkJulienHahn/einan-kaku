@@ -6,7 +6,7 @@ import SwiperText from "./SwiperText";
 import MouseElement from "./MouseElement";
 
 const Arbeit = ({ image, setFocus, mouseContent, setMouseContent }) => {
-  console.log(image);
+
 
   return (
     <div className="arbeitWrapper">
@@ -27,6 +27,7 @@ const Arbeit = ({ image, setFocus, mouseContent, setMouseContent }) => {
           <SwiperSlide>
             <SwiperImage
               url={image.titelbild.url}
+              alt={image.titelbild.originalFilename}
               setMouseContent={setMouseContent}
             />
           </SwiperSlide>
@@ -35,6 +36,7 @@ const Arbeit = ({ image, setFocus, mouseContent, setMouseContent }) => {
             <SwiperSlide key={i}>
               <SwiperImage
                 url={arbeit.bild.url}
+                alt={arbeit.bild.originalFilename}
                 setMouseContent={setMouseContent}
               />
             </SwiperSlide>

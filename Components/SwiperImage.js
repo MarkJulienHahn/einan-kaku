@@ -1,9 +1,11 @@
 import Image from "next/image";
 import { useSwiperSlide, useSwiper } from "swiper/react";
 
-const SwiperImage = ({ url, setMouseContent }) => {
+const SwiperImage = ({ url, setMouseContent, alt }) => {
   const swiper = useSwiper();
   const swiperSlide = useSwiperSlide();
+
+  console.log
 
   return (
     <>
@@ -20,7 +22,7 @@ const SwiperImage = ({ url, setMouseContent }) => {
         }
         onMouseLeave={() => setMouseContent("")}
       >
-        <Image responsive fill objectFit="contain" src={url} />
+        <Image responsive fill objectFit="contain" src={url} alt={alt}/>
       </div>
     </>
   );
