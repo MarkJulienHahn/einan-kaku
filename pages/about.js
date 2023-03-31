@@ -17,7 +17,7 @@ const about = ({ about }) => {
       <ul className="aboutSection">
         <li>Vita</li>
         {about[0].vita.map((entry, i) => (
-          <li>
+          <li key={i}>
             <span className="aboutJahr">{entry.jahr}</span>
             <span className="aboutBeschreibung">{entry.beschreibung}</span>
           </li>
@@ -26,7 +26,7 @@ const about = ({ about }) => {
       <ul className="aboutSection">
         <li>Awards & Scholarships</li>
         {about[0].awards.map((entry, i) => (
-          <li>
+          <li key={i}>
             <span className="aboutJahr">{entry.jahr}</span>
             <span className="aboutBeschreibung">{entry.beschreibung}</span>
           </li>
@@ -35,7 +35,7 @@ const about = ({ about }) => {
       <ul className="aboutSection">
         <li>Solo Exhibitions</li>
         {about[0].soloExhibitions.map((entry, i) => (
-          <li>
+          <li key={i}>
             <span className="aboutJahr">{entry.jahr}</span>
             <span className="aboutBeschreibung">{entry.beschreibung}</span>
           </li>
@@ -44,7 +44,7 @@ const about = ({ about }) => {
       <ul className="aboutSection">
         <li>Group Exhibitions</li>
         {about[0].groupExhibitions.map((entry, i) => (
-          <li>
+          <li key={i}>
             <span className="aboutJahr">{entry.jahr}</span>
             <span className="aboutBeschreibung">{entry.beschreibung}</span>
           </li>
