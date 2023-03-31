@@ -1,0 +1,19 @@
+.wrapper {
+    position: fixed;
+    top: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: var(--spaceMedium);
+    z-index: 10
+}
+
+.menu a {
+    margin-left: var(--spaceMedium)
+}
+
+.language {
+    margin-left: var(--spaceMedium);
+    font-size: 20px;
+
+}
