@@ -78,7 +78,7 @@ export default function Home({ click, setClick, arbeit }) {
       <div className="workOuter">
         {click != "initial" && (
           <ul className="workInfo">
-            <li>"{workInfo.titel}"</li>
+            <li>»{workInfo.titel}«</li>
             <li>{workInfo.untertitel}</li>
           </ul>
         )}
