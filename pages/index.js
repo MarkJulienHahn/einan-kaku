@@ -20,10 +20,9 @@ const Index = ({ click, setClick, arbeit, mouseContent, setMouseContent }) => {
 
   const router = useRouter();
 
-  const height = use100vh();
+  const vh = use100vh();
 
   const [offset, setOffset] = useState(0);
-  const vh = use100vh();
   const [L, setL] = useState(null);
   const [W, setW] = useState(null);
 
@@ -99,7 +98,7 @@ const Index = ({ click, setClick, arbeit, mouseContent, setMouseContent }) => {
             />
           ))}
         </div>
-        <div style={{ height: height }} className="workWrapperMobile">
+        <div style={{ height: vh }} className="workWrapperMobile">
           <Swiper slidesPerView={1.6} centeredSlides={true} spaceBetween={40}>
             {arbeit.map((image, i) => (
               <SwiperSlide key={i}>
@@ -117,7 +116,7 @@ export default Index;
 
 export async function getServerSideProps() {
   const arbeit = await client.fetch(`
-  * [_type == "arbeiten"]|order(orderRank){..., "arbeiten": arbeiten[]{..., "bild": bild.asset->{url, "dimensions": metadata.dimensions, "blurHash": metadata.blurHash, originalFilename}}, "titelbild": titelbild.asset->{url, "dimensions": metadata.dimensions, "blurHash": metadata.blurHash, originalFilename}}`);
+    * [_type == "arbeiten"]|order(orderRank){..., "arbeiten": arbeiten[]{..., "bild": bild.asset->{url, "dimensions": metadata.dimensions, originalFilename}}, "titelbild": titelbild.asset->{url, "dimensions": metadata.dimensions, "blurHash": metadata.blurHash, originalFilename}}`);
   return {
     props: {
       arbeit,

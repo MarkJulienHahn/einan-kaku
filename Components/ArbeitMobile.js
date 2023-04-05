@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { use100vh } from "react-div-100vh";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
@@ -11,8 +13,10 @@ const ArbeitMobile = ({ image, setMouseContent }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const router = useRouter();
 
+  const vh = use100vh()
+
   return (
-    <div className="arbeitWrapper">
+    <div className="arbeitWrapper" style={{height: vh}}>
       {currentIndex == 0 && (
         <ul className="workInfo">
           <li>»{image.werkangaben.titel}«</li>
