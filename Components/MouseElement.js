@@ -16,8 +16,6 @@ const MouseElement = ({mouseContent}) => {
     };
   }, [setX, setY]);
 
-  console.log(mouseContent)
-
   const mouseElement = {
     position: "fixed",
     top: y,

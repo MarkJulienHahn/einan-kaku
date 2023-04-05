@@ -6,9 +6,8 @@ import { useRouter } from "next/router";
 
 import SwiperImage from "./SwiperImage";
 import SwiperText from "./SwiperText";
-import MouseElement from "./MouseElement";
 
-const Arbeit = ({ image, mouseContent, setMouseContent }) => {
+const ArbeitMobile = ({ image, setMouseContent }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const router = useRouter();
 
@@ -28,14 +27,13 @@ const Arbeit = ({ image, mouseContent, setMouseContent }) => {
         ← Back
       </span>
 
-      <MouseElement mouseContent={mouseContent} />
-      <Swiper slidesPerView={1.8} centeredSlides={true} spaceBetween={30}>
+      <Swiper slidesPerView={1.6} centeredSlides={true} spaceBetween={40}>
         <SwiperSlide>
           <SwiperImage
             url={image.titelbild.url}
             alt={image.titelbild.originalFilename}
-            setMouseContent={setMouseContent}
             setCurrentIndex={setCurrentIndex}
+            setMouseContent={setMouseContent}
           />
         </SwiperSlide>
 
@@ -44,8 +42,8 @@ const Arbeit = ({ image, mouseContent, setMouseContent }) => {
             <SwiperImage
               url={arbeit.bild?.url}
               alt={arbeit.bild?.originalFilename}
-              setMouseContent={setMouseContent}
               setCurrentIndex={setCurrentIndex}
+              setMouseContent={setMouseContent}
               vimeo={arbeit?.vimeoLink}
             />
           </SwiperSlide>
@@ -62,4 +60,4 @@ const Arbeit = ({ image, mouseContent, setMouseContent }) => {
   );
 };
 
-export default Arbeit;
+export default ArbeitMobile;

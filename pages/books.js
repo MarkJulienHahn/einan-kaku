@@ -1,24 +1,21 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
+
 import { use100vh } from "react-div-100vh";
 import useWindowDimensions from "@/Hooks/useWindowDimensions";
-import ImagePreview from "@/Components/ImagePreview";
+
 import client from "@/client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-import { useRouter } from "next/router";
-
-import Arbeit from "../Components/Arbeit";
-import ArbeitMobile from "../Components/ArbeitMobile";
+import Book from "../Components/Book";
 import MouseElement from "../Components/MouseElement";
-import ImagePreviewMobile from "@/Components/ImagePreviewMobile";
+import BooksPreview from "@/Components/BooksPreview";
+import BooksPreviewMobile from "@/Components/BooksPreviewMobile";
 
-const Index = ({ click, setClick, arbeit, mouseContent, setMouseContent }) => {
+const books = ({ click, setClick, books, mouseContent, setMouseContent }) => {
   const { windowWidth } = useWindowDimensions();
-
-  const router = useRouter();
 
   const height = use100vh();
 
@@ -28,6 +25,7 @@ const Index = ({ click, setClick, arbeit, mouseContent, setMouseContent }) => {
   const [W, setW] = useState(null);
 
   const [workInfo, setWorkInfo] = useState("");
+  const [focus, setFocus] = useState(null);
 
   const M = windowWidth / 2;
 
@@ -54,20 +52,14 @@ const Index = ({ click, setClick, arbeit, mouseContent, setMouseContent }) => {
 
       {mouseContent && <MouseElement mouseContent={mouseContent} />}
 
-      {router.query.image &&
-        (windowWidth > 1000 ? (
-          <Arbeit
-            image={arbeit[router.query.image]}
-            mouseContent={mouseContent}
-            setMouseContent={setMouseContent}
-          />
-        ) : (
-          <ArbeitMobile
-            image={arbeit[router.query.image]}
-            mouseContent={mouseContent}
-            setMouseContent={setMouseContent}
-          />
-        ))}
+      {focus != null && (
+        <Book
+          book={books[focus]}
+          mouseContent={mouseContent}
+          setMouseContent={setMouseContent}
+          setFocus={setFocus}
+        />
+      )}
 
       <div className="workOuter">
         {workInfo && (
@@ -84,8 +76,8 @@ const Index = ({ click, setClick, arbeit, mouseContent, setMouseContent }) => {
           }}
           className="workWrapper"
         >
-          {arbeit.map((image, i) => (
-            <ImagePreview
+          {books.map((image, i) => (
+            <BooksPreview
               key={i}
               image={image}
               i={i}
@@ -96,14 +88,15 @@ const Index = ({ click, setClick, arbeit, mouseContent, setMouseContent }) => {
               setW={setW}
               setWorkInfo={setWorkInfo}
               setMouseContent={setMouseContent}
+              setFocus={setFocus}
             />
           ))}
         </div>
         <div style={{ height: height }} className="workWrapperMobile">
           <Swiper slidesPerView={1.6} centeredSlides={true} spaceBetween={40}>
-            {arbeit.map((image, i) => (
+            {books.map((image, i) => (
               <SwiperSlide key={i}>
-                <ImagePreviewMobile image={image} i={i} />
+                <BooksPreviewMobile image={image} i={i} setFocus={setFocus} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -113,14 +106,14 @@ const Index = ({ click, setClick, arbeit, mouseContent, setMouseContent }) => {
   );
 };
 
-export default Index;
+export default books;
 
 export async function getServerSideProps() {
-  const arbeit = await client.fetch(`
-  * [_type == "arbeiten"]|order(orderRank){..., "arbeiten": arbeiten[]{..., "bild": bild.asset->{url, "dimensions": metadata.dimensions, originalFilename}}, "titelbild": titelbild.asset->{url, "dimensions": metadata.dimensions, originalFilename}}`);
+  const books = await client.fetch(`
+    * [_type == "books"]|order(orderRank){..., "titelbild": titelbild.asset->{url, "dimensions": metadata.dimensions, originalFilename}}`);
   return {
     props: {
-      arbeit,
+      books,
     },
   };
 }

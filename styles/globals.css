@@ -11,6 +11,11 @@
   margin: 0;
 }
 
+::selection {
+  background: inherit;
+  color: inherit;
+}
+
 @font-face {
   font-family: "Giallo";
   font-style: normal;
@@ -38,7 +43,7 @@ a {
 }
 
 a:hover {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--foreground);
 }
 
 ul {
@@ -88,14 +93,18 @@ ul {
   z-index: 100;
 }
 
+.workWrapperMobile {
+  display: none;
+}
+
 .arbeitWrapper {
   position: fixed;
   left: 0;
   width: 100vw;
   height: 100vh;
-  height: 100vh;
   background: white;
   z-index: 200;
+  animation: fadeIn 0.3s ease;
 }
 
 .swiper {
@@ -114,25 +123,38 @@ ul {
   cursor: pointer;
 }
 
+.close:hover {
+  border-bottom: 2px solid var(--foreground);
+}
+
 .swiperText {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 10vw;
-  width: 80vw;
+  /* width: 80vw; */
   height: 100%;
   /* background: red; */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* ABOUT */
 
 .aboutWrapper {
   margin: 100px var(--spaceMedium) var(--spaceSmall);
-  width: 50%
+  width: 50%;
 }
 
 .aboutSection {
-  padding-bottom: 100px
+  padding-bottom: 100px;
 }
 
 .aboutSection li {
@@ -140,10 +162,97 @@ ul {
 }
 
 .aboutBeschreibung {
-  width: calc(50vw - 250px)
+  width: calc(50vw - 250px);
 }
 
 .aboutJahr {
   display: block;
   width: 250px;
+}
+
+/* BOOKS */
+
+.vimeoWrapper {
+  position: fixed;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  z-index: 200;
+  animation: fadeIn 0.3s ease;
+}
+
+.vimeoInner {
+  width: 70vw;
+  height: calc(70vw / 16 * 9);
+}
+
+.vimeoInner iframe,
+.vimeoWork iframe {
+  height: 100%;
+  width: 100%;
+}
+
+.vimeoWork {
+  width: "auto";
+  max-width: 70vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 1000px) {
+  html,
+  body {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.2px;
+    word-spacing: -0.5px;
+  }
+
+  a:hover {
+    border-bottom: none;
+  }
+
+  .workWrapper {
+    display: none;
+  }
+  .workWrapperMobile {
+    display: flex;
+    height: 100%;
+    width: 100vw;
+  }
+
+  .swiper {
+    width: 100vw;
+  }
+
+  .swiper img {
+    transition: transform 0.5s ease;
+  }
+
+  .swiper-slide-prev img, .swiper-slide-next img {
+    transform: scale(80%);
+  }
+
+  .aboutWrapper {
+    width: 100%;
+    margin: 0;
+    padding: 100px var(--spaceMedium) var(--spaceMedium) var(--spaceMedium);
+  }
+
+  .aboutSection li {
+    flex-direction: column;
+    padding-bottom: 25px;
+  }
+
+  .aboutBeschreibung, .aboutJahr {
+    width: 100%;
+  }
+
+  .swiperText {
+    padding: 0
+  }
 }

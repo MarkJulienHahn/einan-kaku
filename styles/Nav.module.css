@@ -1,19 +1,44 @@
 .wrapper {
-    position: fixed;
-    top: 0;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    padding: var(--spaceMedium);
-    z-index: 10
+  position: fixed;
+  top: 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: var(--spaceMedium);
+  z-index: 10;
 }
 
 .menu a {
-    margin-left: var(--spaceMedium)
+  margin-left: var(--spaceMedium);
 }
 
 .language {
-    margin-left: var(--spaceMedium);
-    font-size: 20px;
+  margin-left: var(--spaceMedium);
+  font-size: 20px;
+}
 
+@media screen and (max-width: 1000px) {
+  .wrapper {
+    justify-content: center;
+  }
+
+  .menu {
+    position: fixed;
+    bottom: var(--spaceSmall);
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+
+  .menu a {
+    margin-left: 0;
+  }
+  .menu span {
+    border: 0 !important;
+    height: 25px;
+  }
 }

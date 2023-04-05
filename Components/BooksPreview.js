@@ -1,9 +1,7 @@
 import { useState, useRef, useEffect } from "react";
-
 import Image from "next/image";
-import { useRouter } from "next/router";
 
-const ImagePreview = ({
+const BooksPreview = ({
   image,
   i,
   click,
@@ -13,20 +11,17 @@ const ImagePreview = ({
   setW,
   setWorkInfo,
   setMouseContent,
+  setFocus,
 }) => {
   const [hover, setHover] = useState(false);
-
   const ref = useRef();
-
-  const router = useRouter();
-
   const aspectRatio = image?.titelbild.dimensions.aspectRatio;
 
-  const hovered = { height: "12%", width: `${aspectRatio * 12}vh` };
-  const regular = { height: "10%", width: `${aspectRatio * 10}vh` };
+  const hovered = { height: "8%", width: `${aspectRatio * 8}vh` };
+  const regular = { height: "7%", width: `${aspectRatio * 7}vh` };
   const clicked = {
-    height: "100vh",
-    width: `${aspectRatio * 100}vh`,
+    height: "70vh",
+    width: `${aspectRatio * 70}vh`,
     cursor: "none",
   };
 
@@ -34,11 +29,9 @@ const ImagePreview = ({
     setClick(number);
     setOffset(0);
   };
-
   const makeFocus = async () => {
-    router.push(`/?image=${i}`, `/${image.slug?.current}`);
+    setFocus(i);
   };
-
   const getL = () => {
     setL(ref.current.getBoundingClientRect().left);
   };
@@ -48,7 +41,7 @@ const ImagePreview = ({
   };
 
   useEffect(() => {
-    setMouseContent(`Click to Enter`);
+    setMouseContent(`Click to Play`);
     click == i && setTimeout(() => getL(), 301);
     click == i && setTimeout(() => getW(), 301);
   }, [click == i]);
@@ -56,6 +49,8 @@ const ImagePreview = ({
   useEffect(() => {
     click == i && setWorkInfo(image.werkangaben);
   });
+
+  // console.log(image)
 
   return (
     <>
@@ -102,4 +97,4 @@ const ImagePreview = ({
   );
 };
 
-export default ImagePreview;
+export default BooksPreview;

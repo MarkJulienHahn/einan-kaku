@@ -4,7 +4,6 @@ import { PortableText } from "@portabletext/react";
 import Link from "next/link"
 
 const about = ({ about }) => {
-  console.log(about[0]);
 
   return (
     <div className="aboutWrapper">
