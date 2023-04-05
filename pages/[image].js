@@ -15,17 +15,22 @@ const ImagePage = ({ arbeit, mouseContent, setMouseContent }) => {
     (single) => single.slug?.current == router.query.image
   );
 
-  return windowWidth > 1000 ? (
-    <Arbeit
-      image={arbeitSingle[0]}
-      mouseContent={mouseContent}
-      setMouseContent={setMouseContent}
-    />
-  ) : (
-    <ArbeitMobile
-      image={arbeitSingle[0]}
-      setMouseContent={setMouseContent}
-    />
+  return (
+    <>
+      <div className="desktop">
+        <Arbeit
+          image={arbeitSingle[0]}
+          mouseContent={mouseContent}
+          setMouseContent={setMouseContent}
+        />
+      </div>
+      <div className="mobile">
+        <ArbeitMobile
+          image={arbeitSingle[0]}
+          setMouseContent={setMouseContent}
+        />
+      </div>
+    </>
   );
 };
 
