@@ -14,7 +14,7 @@ import MouseElement from "../Components/MouseElement";
 import BooksPreview from "@/Components/BooksPreview";
 import BooksPreviewMobile from "@/Components/BooksPreviewMobile";
 
-const books = ({ click, setClick, books, mouseContent, setMouseContent }) => {
+const Books = ({ click, setClick, books, mouseContent, setMouseContent }) => {
   const { windowWidth } = useWindowDimensions();
 
   const height = use100vh();
@@ -106,7 +106,7 @@ const books = ({ click, setClick, books, mouseContent, setMouseContent }) => {
   );
 };
 
-export default books;
+export default Books;
 
 export async function getServerSideProps() {
   const books = await client.fetch(`
