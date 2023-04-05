@@ -34,6 +34,7 @@ const ArbeitMobile = ({ image, setMouseContent }) => {
             alt={image.titelbild.originalFilename}
             setCurrentIndex={setCurrentIndex}
             setMouseContent={setMouseContent}
+            blurHash={image.titelbild.blurHash}
           />
         </SwiperSlide>
 
@@ -44,6 +45,7 @@ const ArbeitMobile = ({ image, setMouseContent }) => {
               alt={arbeit.bild?.originalFilename}
               setCurrentIndex={setCurrentIndex}
               setMouseContent={setMouseContent}
+              blurHash={arbeit.bild?.blurHash}
               vimeo={arbeit?.vimeoLink}
             />
           </SwiperSlide>

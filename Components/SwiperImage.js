@@ -2,7 +2,14 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { useSwiperSlide, useSwiper } from "swiper/react";
 
-const SwiperImage = ({ url, setMouseContent, alt, setCurrentIndex, vimeo }) => {
+const SwiperImage = ({
+  url,
+  setMouseContent,
+  alt,
+  setCurrentIndex,
+  vimeo,
+  blurHash,
+}) => {
   const swiper = useSwiper();
   const swiperSlide = useSwiperSlide();
 
@@ -38,7 +45,14 @@ const SwiperImage = ({ url, setMouseContent, alt, setCurrentIndex, vimeo }) => {
             ></iframe>
           </div>
         ) : (
-          <Image responsive fill objectFit="contain" src={url} alt={alt} />
+          <Image
+            fill
+            objectFit="contain"
+            src={url}
+            alt={alt}
+            placeholder="blur"
+            blurDataURL={blurHash}
+          />
         )}
       </div>
     </>

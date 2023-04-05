@@ -96,6 +96,8 @@ const ImagePreview = ({
           fill
           src={image.titelbild.url}
           alt={image.titelbild.originalFilename}
+          placeholder="blur"
+          blurDataURL={image.titelbild.blurHash}
         />
       </div>
     </>

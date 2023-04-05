@@ -9,11 +9,13 @@ import ArbeitMobile from "@/Components/ArbeitMobile";
 
 const ImagePage = ({ arbeit, mouseContent, setMouseContent }) => {
   const router = useRouter();
-  const { windowWidth } = useWindowDimensions();
 
   const arbeitSingle = arbeit.filter(
     (single) => single.slug?.current == router.query.image
   );
+
+  console.log(arbeitSingle[0])
+
 
   return (
     <>
@@ -38,7 +40,7 @@ export default ImagePage;
 
 export async function getServerSideProps() {
   const arbeit = await client.fetch(`
-    * [_type == "arbeiten"]|order(orderRank){..., "arbeiten": arbeiten[]{..., "bild": bild.asset->{url, "dimensions": metadata.dimensions, originalFilename}}, "titelbild": titelbild.asset->{url, "dimensions": metadata.dimensions, originalFilename}}`);
+  * [_type == "arbeiten"]|order(orderRank){..., "arbeiten": arbeiten[]{..., "bild": bild.asset->{url, "dimensions": metadata.dimensions, "blurHash": metadata.blurHash, originalFilename}}, "titelbild": titelbild.asset->{url, "dimensions": metadata.dimensions, "blurHash": metadata.blurHash, originalFilename}}`);
   return {
     props: {
       arbeit,
