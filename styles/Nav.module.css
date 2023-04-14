@@ -5,7 +5,7 @@
   width: 100%;
   justify-content: space-between;
   padding: var(--spaceMedium);
-  z-index: 10;
+  z-index: 100;
 }
 
 .menu a {

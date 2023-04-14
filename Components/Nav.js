@@ -5,7 +5,7 @@ import useWindowDimensions from "@/Hooks/useWindowDimensions";
 
 import { useRouter } from "next/router";
 
-const Nav = ({ setClick }) => {
+const Nav = ({ setClick, showAbout, setShowAbout }) => {
   const router = useRouter();
   const { windowWidth } = useWindowDimensions();
 
@@ -17,7 +17,10 @@ const Nav = ({ setClick }) => {
 
   return (
     <div className={styles.wrapper}>
-      {router.pathname == "/about" && windowWidth < 1000 ? (
+      <div onClick={() => setShowAbout(!showAbout)} style={{cursor: "pointer"}}>
+        <a>Einan Kaku</a>
+      </div>
+      {/* {router.pathname == "/about" && windowWidth < 1000 ? (
         <Link href="/">Back</Link>
       ) : (
         <Link
@@ -26,30 +29,50 @@ const Nav = ({ setClick }) => {
         >
           Einan Kaku
         </Link>
-      )}
+      )} */}
 
       {router.pathname != "/about" || windowWidth > 1000 ? (
         <div className={styles.menu}>
           {router.pathname == "/" ? (
-            <span onClick={() => setClick("initial")}>
+            <span
+              onClick={() => {
+                setClick("initial"), setShowAbout(false);
+              }}
+            >
               <a style={currentPage}>Work</a>
             </span>
           ) : (
             <Link style={otherPage} href="/">
-              Work
+              <span
+                onClick={() => {
+                  setShowAbout(false);
+                }}
+              >
+                Work
+              </span>
             </Link>
           )}
 
           {router.pathname == "/books" ? (
-            <span onClick={() => setClick("initial")}>
+            <span
+              onClick={() => {
+                setClick("initial"), setShowAbout(false);
+              }}
+            >
               <a style={currentPage}>Books</a>
             </span>
           ) : (
             <Link style={otherPage} href="/books">
-              Books
+              <span
+                onClick={() => {
+                  setShowAbout(false);
+                }}
+              >
+                Books
+              </span>
             </Link>
           )}
-            
+
           <a
             href="https://www.instagram.com/einankaku/?hl=de"
             target="blank"

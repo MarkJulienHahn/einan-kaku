@@ -31,8 +31,8 @@ body {
   background: white;
   font-family: "Giallo";
   font-variation-settings: "wght" 300;
-  font-size: 26px;
-  line-height: 34px;
+  font-size: 22px;
+  line-height: 29px;
   /* letter-spacing: 0.8px; */
   word-spacing: -1px;
 }
@@ -61,9 +61,7 @@ ul {
 
 .workWrapper {
   position: absolute;
-  /* top: 0;
-  right: 100vw; */
-  /* transform: translateX(-50vw); */
+  animation: fadeIn 1s ease;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,7 +88,7 @@ ul {
   bottom: var(--spaceSmall);
   left: var(--spaceSmall);
   max-width: clamp(300px, 20vw, 700px);
-  z-index: 100;
+  /* z-index: 100; */
 }
 
 .workWrapperMobile {
@@ -148,9 +146,29 @@ ul {
 
 /* ABOUT */
 
+.aboutOuter {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  overflow: scroll;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  height: 100%;
+  animation: fadeIn 0.5s ease;
+}
+
 .aboutWrapper {
   margin: 100px var(--spaceMedium) var(--spaceSmall);
   width: 50%;
+}
+
+.aboutHeadBackground {
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(white 50%, rgba(0,0,0,0));
+  position: fixed;
+  top: 0;
+  z-index: 55;
 }
 
 .aboutSection {
@@ -168,6 +186,15 @@ ul {
 .aboutJahr {
   display: block;
   width: 250px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* BOOKS */
@@ -233,7 +260,8 @@ ul {
     transition: transform 0.5s ease;
   }
 
-  .swiper-slide-prev img, .swiper-slide-next img {
+  .swiper-slide-prev img,
+  .swiper-slide-next img {
     transform: scale(80%);
   }
 
@@ -248,11 +276,12 @@ ul {
     padding-bottom: 25px;
   }
 
-  .aboutBeschreibung, .aboutJahr {
+  .aboutBeschreibung,
+  .aboutJahr {
     width: 100%;
   }
 
   .swiperText {
-    padding: 0
+    padding: 0;
   }
 }

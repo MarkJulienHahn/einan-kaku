@@ -10,12 +10,21 @@ import "swiper/css";
 
 import { useRouter } from "next/router";
 
+import About from "../Components/About"
 import Arbeit from "../Components/Arbeit";
 import ArbeitMobile from "../Components/ArbeitMobile";
 import MouseElement from "../Components/MouseElement";
 import ImagePreviewMobile from "@/Components/ImagePreviewMobile";
 
-const Index = ({ click, setClick, arbeit, mouseContent, setMouseContent }) => {
+const Index = ({
+  click,
+  setClick,
+  arbeit,
+  about,
+  mouseContent,
+  setMouseContent,
+  showAbout
+}) => {
   const { windowWidth } = useWindowDimensions();
 
   const router = useRouter();
@@ -25,6 +34,7 @@ const Index = ({ click, setClick, arbeit, mouseContent, setMouseContent }) => {
   const [offset, setOffset] = useState(0);
   const [L, setL] = useState(null);
   const [W, setW] = useState(null);
+
 
   const [workInfo, setWorkInfo] = useState("");
 
@@ -42,6 +52,8 @@ const Index = ({ click, setClick, arbeit, mouseContent, setMouseContent }) => {
     if (click == "initial") setOffset(0), setMouseContent(null);
   });
 
+  console.log(showAbout)
+
   return (
     <>
       <Head>
@@ -52,6 +64,8 @@ const Index = ({ click, setClick, arbeit, mouseContent, setMouseContent }) => {
       </Head>
 
       {mouseContent && <MouseElement mouseContent={mouseContent} />}
+
+      {showAbout && <About about={about} />}
 
       {router.query.image &&
         (windowWidth > 1000 ? (
@@ -116,10 +130,13 @@ export default Index;
 
 export async function getServerSideProps() {
   const arbeit = await client.fetch(`
-    * [_type == "arbeiten"]|order(orderRank){..., "arbeiten": arbeiten[]{..., "bild": bild.asset->{url, "dimensions": metadata.dimensions, originalFilename}}, "titelbild": titelbild.asset->{url, "dimensions": metadata.dimensions, "blurHash": metadata.blurHash, originalFilename}}`);
+    * [_type == "arbeiten"]|order(orderRank){..., "arbeiten": arbeiten[]{..., "bild": bild.asset->{url, "dimensions": metadata.dimensions, "blurHash": metadata.blurHash, originalFilename}}, "titelbild": titelbild.asset->{url, "dimensions": metadata.dimensions, "blurHash": metadata.blurHash, originalFilename}}`);
+  const about = await client.fetch(`
+  * [_type == "about"]`);
   return {
     props: {
       arbeit,
+      about,
     },
   };
 }

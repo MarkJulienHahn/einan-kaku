@@ -13,8 +13,17 @@ import Book from "../Components/Book";
 import MouseElement from "../Components/MouseElement";
 import BooksPreview from "@/Components/BooksPreview";
 import BooksPreviewMobile from "@/Components/BooksPreviewMobile";
+import About from "@/Components/About"
 
-const Books = ({ click, setClick, books, mouseContent, setMouseContent }) => {
+const Books = ({
+  click,
+  setClick,
+  books,
+  about,
+  mouseContent,
+  setMouseContent,
+  showAbout,
+}) => {
   const { windowWidth } = useWindowDimensions();
 
   const height = use100vh();
@@ -41,6 +50,8 @@ const Books = ({ click, setClick, books, mouseContent, setMouseContent }) => {
     if (click == "initial") setOffset(0), setMouseContent(null);
   });
 
+  console.log(books)
+
   return (
     <>
       <Head>
@@ -51,6 +62,8 @@ const Books = ({ click, setClick, books, mouseContent, setMouseContent }) => {
       </Head>
 
       {mouseContent && <MouseElement mouseContent={mouseContent} />}
+
+      {showAbout && <About about={about} />}
 
       {focus != null && (
         <Book
@@ -110,10 +123,13 @@ export default Books;
 
 export async function getServerSideProps() {
   const books = await client.fetch(`
-    * [_type == "books"]|order(orderRank){..., "titelbild": titelbild.asset->{url, "dimensions": metadata.dimensions, originalFilename}}`);
+  * [_type == "books"]|order(orderRank){..., "titelbild": titelbild.asset->{url, "dimensions": metadata.dimensions, originalFilename}}`);
+  const about = await client.fetch(`
+  * [_type == "about"]`);
   return {
     props: {
       books,
+      about,
     },
   };
 }

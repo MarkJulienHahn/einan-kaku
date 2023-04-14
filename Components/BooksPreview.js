@@ -17,8 +17,8 @@ const BooksPreview = ({
   const ref = useRef();
   const aspectRatio = image?.titelbild.dimensions.aspectRatio;
 
-  const hovered = { height: "8%", width: `${aspectRatio * 8}vh` };
-  const regular = { height: "7%", width: `${aspectRatio * 7}vh` };
+  const hovered = { height: "14%", width: `${aspectRatio * 14}vh` };
+  const regular = { height: "12%", width: `${aspectRatio * 12}vh` };
   const clicked = {
     height: "70vh",
     width: `${aspectRatio * 70}vh`,
@@ -62,7 +62,7 @@ const BooksPreview = ({
             ? () => {
                 setHover(true), setWorkInfo(image.werkangaben);
               }
-            : () => setMouseContent(`Click to Enter`)
+            : () => setMouseContent(`Click to Play`)
         }
         onMouseLeave={
           click != i
