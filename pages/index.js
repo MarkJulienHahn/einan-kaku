@@ -52,8 +52,6 @@ const Index = ({
     if (click == "initial") setOffset(0), setMouseContent(null);
   });
 
-  console.log(showAbout)
-
   return (
     <>
       <Head>
@@ -67,7 +65,7 @@ const Index = ({
 
       {showAbout && <About about={about} />}
 
-      {router.query.image &&
+      {router.query?.image &&
         (windowWidth > 1000 ? (
           <Arbeit
             image={arbeit[router.query.image]}

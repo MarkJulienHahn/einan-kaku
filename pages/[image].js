@@ -14,9 +14,6 @@ const ImagePage = ({ arbeit, mouseContent, setMouseContent }) => {
     (single) => single.slug?.current == router.query.image
   );
 
-  console.log(arbeitSingle[0])
-
-
   return (
     <>
       <div className="desktop">

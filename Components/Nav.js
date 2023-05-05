@@ -80,6 +80,11 @@ const Nav = ({ setClick, showAbout, setShowAbout }) => {
           >
             Instagram
           </a>
+          <a
+            href="mailto:einan926@hotmail.com"
+          >
+            Contact
+          </a>
           {/* <span className={styles.language}>中国人</span> */}
         </div>
       ) : (

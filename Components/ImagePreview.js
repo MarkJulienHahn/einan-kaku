@@ -22,8 +22,8 @@ const ImagePreview = ({
 
   const aspectRatio = image?.titelbild.dimensions.aspectRatio;
 
-  const hovered = { height: "15%", width: `${aspectRatio * 15}vh` };
-  const regular = { height: "13%", width: `${aspectRatio * 13}vh` };
+  const hovered = aspectRatio < 1.05 ? { height: "15%", width: `${aspectRatio * 15}vh` } : { height: "12%", width: `${aspectRatio * 12}vh` };
+  const regular = aspectRatio < 1.05 ? { height: "13%", width: `${aspectRatio * 13}vh` } : { height: "10%", width: `${aspectRatio * 10}vh` };
   const clicked = {
     height: "100vh",
     width: `${aspectRatio * 100}vh`,

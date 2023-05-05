@@ -9,6 +9,7 @@ const SwiperImage = ({
   setCurrentIndex,
   vimeo,
   blurHash,
+  firstSwipe
 }) => {
   const swiper = useSwiper();
   const swiperSlide = useSwiperSlide();
@@ -16,6 +17,12 @@ const SwiperImage = ({
   useEffect(() => {
     setCurrentIndex(swiper.activeIndex);
   });
+
+  useEffect(() => {
+    firstSwipe && swiper.slideNext()
+  }, [firstSwipe]);
+
+console.log(firstSwipe)
 
   return (
     <>

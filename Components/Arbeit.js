@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -11,7 +11,16 @@ import MouseElement from "./MouseElement";
 
 const Arbeit = ({ image, mouseContent, setMouseContent }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [firstSwipe, setFirstSwipe] = useState(false)
   const router = useRouter();
+
+  const next = () => {
+    setFirstSwipe(true)
+  }
+
+  useEffect(() => {
+    setTimeout(next, 200)
+  })
 
   return (
     <div className="arbeitWrapper">
@@ -30,7 +39,7 @@ const Arbeit = ({ image, mouseContent, setMouseContent }) => {
       </span>
 
       <MouseElement mouseContent={mouseContent} />
-      <Swiper slidesPerView={1.8} centeredSlides={true} spaceBetween={30}>
+      <Swiper slidesPerView={1.8} centeredSlides={true} spaceBetween={30} rewind={true}>
         <SwiperSlide>
           <SwiperImage
             url={image.titelbild.url}
@@ -38,6 +47,14 @@ const Arbeit = ({ image, mouseContent, setMouseContent }) => {
             setMouseContent={setMouseContent}
             setCurrentIndex={setCurrentIndex}
             blurHash={image.titelbild.blurHash}
+            firstSwipe={firstSwipe}
+          />
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <SwiperText
+            text={image.beschreibung}
+            setMouseContent={setMouseContent}
           />
         </SwiperSlide>
 
@@ -54,12 +71,7 @@ const Arbeit = ({ image, mouseContent, setMouseContent }) => {
           </SwiperSlide>
         ))}
 
-        <SwiperSlide>
-          <SwiperText
-            text={image.beschreibung}
-            setMouseContent={setMouseContent}
-          />
-        </SwiperSlide>
+
       </Swiper>
     </div>
   );
