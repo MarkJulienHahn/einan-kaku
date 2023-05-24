@@ -15,7 +15,7 @@ const ImagePreviewMobile = ({ image, i }) => {
         src={image.titelbild.url}
         alt={image.titelbild.originalFilename}
         placeholder="blur"
-        blurDataURL={image.titelbild.blurHash}
+        blurDataURL={`/_next/image?url=${image.titelbild.url}&w=16&q=1`}
       />
     </div>
   );

@@ -23,6 +23,7 @@ const Books = ({
   mouseContent,
   setMouseContent,
   showAbout,
+  setShowAbout
 }) => {
   const { windowWidth } = useWindowDimensions();
 
@@ -63,7 +64,7 @@ const Books = ({
 
       {mouseContent && <MouseElement mouseContent={mouseContent} />}
 
-      {showAbout && <About about={about} />}
+      {showAbout && <About setShowAbout={setShowAbout} about={about} />}
 
       {focus != null && (
         <Book

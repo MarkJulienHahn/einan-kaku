@@ -18,6 +18,7 @@ export default function App({ Component, pageProps }) {
         mouseContent={mouseContent}
         setMouseContent={setMouseContent}
         showAbout={showAbout}
+        setShowAbout={setShowAbout}
       />
     </>
   );

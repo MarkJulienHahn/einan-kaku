@@ -2,10 +2,11 @@ import { PortableText } from "@portabletext/react";
 
 import Link from "next/link";
 
-const About = ({ about }) => {
+const About = ({ about, setShowAbout }) => {
   return (
     <>
       <div className="aboutHeadBackground"></div>
+      <div className="aboutMobileCloseButton" onClick={() => setShowAbout(false)}>Back</div>
       <div className="aboutOuter">
         <div className="aboutWrapper">
           <div className="aboutSection">

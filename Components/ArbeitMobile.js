@@ -42,6 +42,13 @@ const ArbeitMobile = ({ image, setMouseContent }) => {
           />
         </SwiperSlide>
 
+        <SwiperSlide>
+          <SwiperText
+            text={image.beschreibung}
+            setMouseContent={setMouseContent}
+          />
+        </SwiperSlide>
+
         {image.arbeiten.map((arbeit, i) => (
           <SwiperSlide key={i}>
             <SwiperImage
@@ -55,12 +62,7 @@ const ArbeitMobile = ({ image, setMouseContent }) => {
           </SwiperSlide>
         ))}
 
-        <SwiperSlide>
-          <SwiperText
-            text={image.beschreibung}
-            setMouseContent={setMouseContent}
-          />
-        </SwiperSlide>
+
       </Swiper>
     </div>
   );

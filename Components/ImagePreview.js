@@ -22,13 +22,28 @@ const ImagePreview = ({
 
   const aspectRatio = image?.titelbild.dimensions.aspectRatio;
 
-  const hovered = aspectRatio < 1.05 ? { height: "15%", width: `${aspectRatio * 15}vh` } : { height: "12%", width: `${aspectRatio * 12}vh` };
-  const regular = aspectRatio < 1.05 ? { height: "13%", width: `${aspectRatio * 13}vh` } : { height: "10%", width: `${aspectRatio * 10}vh` };
-  const clicked = {
-    height: "100vh",
-    width: `${aspectRatio * 100}vh`,
-    cursor: "none",
-  };
+  const hovered =
+    aspectRatio < 1.05
+      ? { height: "15%", width: `${aspectRatio * 15}vh` }
+      : { height: "12%", width: `${aspectRatio * 12}vh` };
+  const regular =
+    aspectRatio < 1.05
+      ? { height: "13%", width: `${aspectRatio * 13}vh` }
+      : { height: "10%", width: `${aspectRatio * 10}vh` };
+
+  const clicked =
+    aspectRatio < 1.05
+      ? {
+          height: "100vh",
+          width: `${aspectRatio * 100}vh`,
+          transform: "scale(95%)",
+          cursor: "none",
+        }
+      : {
+          height: "70vh",
+          width: `${aspectRatio * 70}vh`,
+          cursor: "none",
+        };
 
   const makeActive = (number) => {
     setClick(number);
@@ -97,7 +112,7 @@ const ImagePreview = ({
           src={image.titelbild.url}
           alt={image.titelbild.originalFilename}
           placeholder="blur"
-          blurDataURL={image.titelbild.blurHash}
+          blurDataURL={`/_next/image?url=${image.titelbild.url}&w=16&q=1`}
         />
       </div>
     </>

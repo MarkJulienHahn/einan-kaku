@@ -11,6 +11,8 @@
   "dependencies": {
     "@portabletext/react": "^2.0.2",
     "@sanity/client": "^5.4.1",
+    "@u-wave/react-vimeo": "^0.9.10",
+    "@vimeo/player": "^2.19.0",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "next": "13.2.4",

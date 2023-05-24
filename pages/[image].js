@@ -1,11 +1,11 @@
 import React from "react";
 
 import { useRouter } from "next/router";
-import useWindowDimensions from "@/Hooks/useWindowDimensions";
 
 import client from "@/client";
 import Arbeit from "@/Components/Arbeit";
 import ArbeitMobile from "@/Components/ArbeitMobile";
+import MouseElement from "@/Components/MouseElement";
 
 const ImagePage = ({ arbeit, mouseContent, setMouseContent }) => {
   const router = useRouter();
@@ -16,6 +16,8 @@ const ImagePage = ({ arbeit, mouseContent, setMouseContent }) => {
 
   return (
     <>
+      {" "}
+      {mouseContent && <MouseElement mouseContent={mouseContent} />}
       <div className="desktop">
         <Arbeit
           image={arbeitSingle[0]}

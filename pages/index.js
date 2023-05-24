@@ -10,7 +10,7 @@ import "swiper/css";
 
 import { useRouter } from "next/router";
 
-import About from "../Components/About"
+import About from "../Components/About";
 import Arbeit from "../Components/Arbeit";
 import ArbeitMobile from "../Components/ArbeitMobile";
 import MouseElement from "../Components/MouseElement";
@@ -23,9 +23,22 @@ const Index = ({
   about,
   mouseContent,
   setMouseContent,
-  showAbout
+  showAbout,
+  setShowAbout,
 }) => {
   const { windowWidth } = useWindowDimensions();
+
+  const [x, setX] = useState();
+
+  useEffect(() => {
+    const update = (e) => {
+      setX(e.x - windowWidth / 2);
+    };
+    window.addEventListener("mousemove", update);
+    return () => {
+      window.removeEventListener("mousemove", update);
+    };
+  }, [setX]);
 
   const router = useRouter();
 
@@ -35,10 +48,13 @@ const Index = ({
   const [L, setL] = useState(null);
   const [W, setW] = useState(null);
 
-
   const [workInfo, setWorkInfo] = useState("");
 
   const M = windowWidth / 2;
+
+  const closeAction = async () => {
+    setClick("pause"), setX(0), setClick("initial");
+  };
 
   useEffect(() => {
     setOffset(M - (L + W / 2));
@@ -52,6 +68,8 @@ const Index = ({
     if (click == "initial") setOffset(0), setMouseContent(null);
   });
 
+  console.log(x, click);
+
   return (
     <>
       <Head>
@@ -59,11 +77,12 @@ const Index = ({
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <meta charset="utf-8" />
       </Head>
 
       {mouseContent && <MouseElement mouseContent={mouseContent} />}
 
-      {showAbout && <About about={about} />}
+      {showAbout && <About setShowAbout={setShowAbout} about={about} />}
 
       {router.query?.image &&
         (windowWidth > 1000 ? (
@@ -80,6 +99,11 @@ const Index = ({
           />
         ))}
 
+      {click != "initial" && (
+        <div className="workCloseButton" onClick={closeAction}>
+          close
+        </div>
+      )}
       <div className="workOuter">
         {workInfo && (
           <ul className="workInfo">
@@ -89,10 +113,14 @@ const Index = ({
         )}
 
         <div
-          style={{
-            height: vh,
-            transform: `translateX(${offset}px)`,
-          }}
+          style={
+            click == "initial"
+              ? {
+                  height: vh,
+                  transform: `translateX(${offset - x}px)`,
+                }
+              : { height: vh, transform: `translateX(${offset}px)` }
+          }
           className="workWrapper"
         >
           {arbeit.map((image, i) => (

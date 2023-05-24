@@ -2,14 +2,14 @@
   position: fixed;
   top: 0;
   display: flex;
-  width: 100%;
+  flex-direction: column;
   justify-content: space-between;
   padding: var(--spaceMedium);
   z-index: 100;
 }
 
 .menu a {
-  margin-left: var(--spaceMedium);
+  margin-right: var(--spaceMedium);
 }
 
 .language {
@@ -20,6 +20,11 @@
 @media screen and (max-width: 1000px) {
   .wrapper {
     justify-content: center;
+    text-align: center;
+  }
+
+  .wrapper div a {
+    z-index: 1000;
   }
 
   .menu {
