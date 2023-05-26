@@ -51,8 +51,6 @@ const Books = ({
     if (click == "initial") setOffset(0), setMouseContent(null);
   });
 
-  console.log(books)
-
   return (
     <>
       <Head>
@@ -124,7 +122,7 @@ export default Books;
 
 export async function getServerSideProps() {
   const books = await client.fetch(`
-  * [_type == "books"]|order(orderRank){..., "titelbild": titelbild.asset->{url, "dimensions": metadata.dimensions, originalFilename}}`);
+  * [_type == "books"]|order(orderRank){..., "titelbild": titelbild.asset->{url, "dimensions": metadata.dimensions, originalFilename}, "bilder": bilder[].bild.asset->{url, "dimensions": metadata.dimensions, originalFilename}}`);
   const about = await client.fetch(`
   * [_type == "about"]`);
   return {

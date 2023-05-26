@@ -15,6 +15,7 @@ import Arbeit from "../Components/Arbeit";
 import ArbeitMobile from "../Components/ArbeitMobile";
 import MouseElement from "../Components/MouseElement";
 import ImagePreviewMobile from "@/Components/ImagePreviewMobile";
+import Contact from "@/Components/Contact";
 
 const Index = ({
   click,
@@ -25,10 +26,13 @@ const Index = ({
   setMouseContent,
   showAbout,
   setShowAbout,
+  showContact,
+  blocker, setBlocker
 }) => {
   const { windowWidth } = useWindowDimensions();
 
   const [x, setX] = useState();
+
 
   useEffect(() => {
     const update = (e) => {
@@ -66,9 +70,10 @@ const Index = ({
 
   useEffect(() => {
     if (click == "initial") setOffset(0), setMouseContent(null);
+    if (blocker) setX(0);
   });
 
-  console.log(x, click);
+  console.log(blocker);
 
   return (
     <>
@@ -81,8 +86,8 @@ const Index = ({
       </Head>
 
       {mouseContent && <MouseElement mouseContent={mouseContent} />}
-
       {showAbout && <About setShowAbout={setShowAbout} about={about} />}
+      {showContact && <Contact />}
 
       {router.query?.image &&
         (windowWidth > 1000 ? (
@@ -112,9 +117,17 @@ const Index = ({
           </ul>
         )}
 
+        {click == "initial" && (
+          <div
+            className="blocker"
+            onMouseEnter={() => setBlocker(true)}
+            onMouseLeave={() => setBlocker(false)}
+          ></div>
+        )}
+
         <div
           style={
-            click == "initial"
+            click == "initial" && !blocker
               ? {
                   height: vh,
                   transform: `translateX(${offset - x}px)`,

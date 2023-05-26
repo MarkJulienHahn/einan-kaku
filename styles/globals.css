@@ -30,20 +30,22 @@ body {
   color: var(--foreground);
   background: white;
   font-family: "Giallo";
-  font-variation-settings: "wght" 300;
+  font-variation-settings: "ital" 0, "wght" 300;
   font-size: 22px;
   line-height: 29px;
-  /* letter-spacing: 0.8px; */
   word-spacing: -1px;
+
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  transition: font-variation-settings 0.2s ease
 }
 
 a:hover {
-  border-bottom: 2px solid var(--foreground);
+  font-variation-settings: "ital" 100, "wght" 300;
+
 }
 
 ul {
@@ -86,9 +88,18 @@ ul {
   transition: all 0.3s ease;
 }
 
+.blocker {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 40vh;
+  z-index: 50;
+}
+
 .image {
   position: relative;
   cursor: pointer;
+  z-index: 60;
 }
 
 .workInfo {
@@ -136,7 +147,7 @@ ul {
 .swiperText {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   padding: 10vw;
   height: 100%;
   overflow-y: scroll;
@@ -242,7 +253,50 @@ ul {
   width: "auto";
   max-width: 70vw;
   height: 100vh;
-  /* pointer-events: none; */
+}
+
+.iframeOverlay {
+  height: calc(100% - 50px);
+  width: 100%;
+  position: absolute;
+  cursor: none;
+}
+
+/* CONTACT */
+.contactWrapper {
+  position: fixed;
+  top: 0;
+  overflow: scroll;
+  height: 100%;
+  animation: fadeIn 0.5s ease;
+  width: 100%;
+  height: 100%;
+  padding: 100px var(--spaceMedium) var(--spaceSmall);
+}
+
+.contactInner{
+  padding-bottom: 23px
+}
+
+/* EXHIBITIONS */
+
+.exhibitionsWrapper {
+  position: fixed;
+  top: 0;
+  overflow: scroll;
+  height: 100%;
+  animation: fadeIn 0.5s ease;
+  width: 100%;
+  height: 100%;
+  padding: 100px var(--spaceMedium) var(--spaceSmall);
+}
+
+.exhibitionInner {
+  padding-bottom: 23px
+}
+
+.italic {
+  font-variation-settings: "ital" 100;
 }
 
 @media screen and (max-width: 1000px) {
@@ -266,6 +320,8 @@ ul {
     height: 100%;
     width: 100vw;
   }
+
+
 
   .swiper {
     width: 100vw;

@@ -35,8 +35,6 @@ const SwiperImage = ({
   //     });
   // }, []);
 
-  console.log(videoRef);
-
   return (
     <>
       <div>
@@ -44,11 +42,11 @@ const SwiperImage = ({
           <div
             className="vimeoWork"
             style={{ transform: "scale(95%)", cursor: "default" }}
-            onClick={
-              swiperSlide.isNext
-                ? () => swiper.slideNext()
-                : () => swiper.slidePrev()
-            }
+            // onClick={
+            //   swiperSlide.isNext
+            //     ? () => swiper.slideNext()
+            //     : () => swiper.slidePrev()
+            // }
             // onMouseEnter={
             //   swiperSlide.isActive || swiperSlide.isNext
             //     ? () => setMouseContent("unmute")
@@ -59,6 +57,21 @@ const SwiperImage = ({
             {/* <div ref={buttonRef} style={{ position: "fixed" }}>
               BUTTON
             </div> */}
+
+            <div
+              className="iframeOverlay"
+              onClick={
+                swiperSlide.isActive || swiperSlide.isNext
+                  ? () => swiper.slideNext()
+                  : () => swiper.slidePrev()
+              }
+              onMouseEnter={
+                swiperSlide.isActive || swiperSlide.isNext
+                  ? () => setMouseContent("→")
+                  : () => setMouseContent("←")
+              }
+              onMouseLeave={() => setMouseContent("")}
+            ></div>
 
             <iframe
               ref={videoRef}

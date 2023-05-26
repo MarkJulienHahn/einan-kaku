@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { use100vh } from "react-div-100vh";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,9 +11,18 @@ import SwiperText from "./SwiperText";
 
 const ArbeitMobile = ({ image, setMouseContent }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [firstSwipe, setFirstSwipe] = useState(false)
   const router = useRouter();
 
   const vh = use100vh()
+
+  const next = () => {
+    setFirstSwipe(true)
+  }
+
+  useEffect(() => {
+    setTimeout(next, 200)
+  })
 
   return (
     <div className="arbeitWrapper" style={{height: vh}}>
@@ -39,6 +48,7 @@ const ArbeitMobile = ({ image, setMouseContent }) => {
             setCurrentIndex={setCurrentIndex}
             setMouseContent={setMouseContent}
             blurHash={image.titelbild.blurHash}
+            firstSwipe={firstSwipe}
           />
         </SwiperSlide>
 

@@ -42,8 +42,8 @@ const BooksPreview = ({
 
   useEffect(() => {
     setMouseContent(`Click to Play`);
-    click == i && setTimeout(() => getL(), 100);
-    click == i && setTimeout(() => getW(), 100);
+    click == i && setTimeout(() => getL(), 301);
+    click == i && setTimeout(() => getW(), 301);
   }, [click == i]);
 
   useEffect(() => {
