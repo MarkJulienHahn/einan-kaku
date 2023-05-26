@@ -321,7 +321,9 @@ ul {
     width: 100vw;
   }
 
-
+  .blocker {
+    display: none
+  }
 
   .swiper {
     width: 100vw;
