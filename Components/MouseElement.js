@@ -21,12 +21,15 @@ const MouseElement = ({mouseContent}) => {
     top: y,
     left: x,
     zIndex: 1000,
-    pointerEvents: "none"
+    pointerEvents: "none",
+    cursor: "wait"
     // visibility: props.lable ? "visible" : "hidden",
     // background: props.background ? props.background : "var(--tertiary)"
   };
 
-  return <div style={mouseElement}>{mouseContent}</div>;
+  return <div style={mouseElement} 
+  className="mouseElement"
+  >{mouseContent}</div>;
 };
 
 export default MouseElement;

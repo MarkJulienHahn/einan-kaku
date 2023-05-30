@@ -6,6 +6,7 @@
   justify-content: space-between;
   padding: var(--spaceMedium);
   z-index: 100;
+  width: 100%;
 }
 
 .menu a {
@@ -17,7 +18,7 @@
   font-size: 20px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1300px) {
   .wrapper {
     justify-content: center;
     text-align: center;
@@ -44,6 +45,6 @@
   }
   .menu span {
     border: 0 !important;
-    height: 25px;
+    /* height: 25px; */
   }
 }

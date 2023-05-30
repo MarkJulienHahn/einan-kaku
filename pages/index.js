@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import { use100vh } from "react-div-100vh";
 import useWindowDimensions from "@/Hooks/useWindowDimensions";
@@ -27,30 +27,22 @@ const Index = ({
   showAbout,
   setShowAbout,
   showContact,
-  blocker, setBlocker
+  blocker,
+  setBlocker,
 }) => {
   const { windowWidth } = useWindowDimensions();
 
-  const [x, setX] = useState();
-
-
-  useEffect(() => {
-    const update = (e) => {
-      setX(e.x - windowWidth / 2);
-    };
-    window.addEventListener("mousemove", update);
-    return () => {
-      window.removeEventListener("mousemove", update);
-    };
-  }, [setX]);
-
   const router = useRouter();
-
+  const ref = useRef();
   const vh = use100vh();
+
+  const [x, setX] = useState();
 
   const [offset, setOffset] = useState(0);
   const [L, setL] = useState(null);
   const [W, setW] = useState(null);
+
+  const [difference, setDifference] = useState(null);
 
   const [workInfo, setWorkInfo] = useState("");
 
@@ -69,11 +61,46 @@ const Index = ({
   }, []);
 
   useEffect(() => {
+    const update = (e) => {
+      setX((e.x - windowWidth / 2) / difference);
+    };
+    window.addEventListener("mousemove", update);
+    return () => {
+      window.removeEventListener("mousemove", update);
+    };
+  });
+
+  useEffect(() => {
+    if (ref.current?.clientWidth - windowWidth < 0) setDifference(0);
+    if (
+      ref.current?.clientWidth - windowWidth > 0 &&
+      ref.current?.clientWidth - windowWidth < 300
+    )
+      setDifference(4);
+    if (
+      ref.current?.clientWidth - windowWidth > 300 &&
+      ref.current?.clientWidth - windowWidth < 600
+    )
+      setDifference(2);
+    if (
+      ref.current?.clientWidth - windowWidth > 600 &&
+      ref.current?.clientWidth - windowWidth < 700
+    )
+      setDifference(2);
+    if (
+      ref.current?.clientWidth - windowWidth > 700 &&
+      ref.current?.clientWidth - windowWidth < 1000
+    )
+      setDifference(1.5);
+    if (
+      ref.current?.clientWidth - windowWidth > 1000 &&
+      ref.current?.clientWidth - windowWidth < 1200
+    )
+      setDifference(1);
+    if (ref.current?.clientWidth - windowWidth > 1200) setDifference(0.5);
     if (click == "initial") setOffset(0), setMouseContent(null);
     if (blocker) setX(0);
   });
-
-  console.log(blocker);
 
   return (
     <>
@@ -135,6 +162,7 @@ const Index = ({
               : { height: vh, transform: `translateX(${offset}px)` }
           }
           className="workWrapper"
+          ref={ref}
         >
           {arbeit.map((image, i) => (
             <ImagePreview

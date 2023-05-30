@@ -102,6 +102,16 @@ ul {
   z-index: 60;
 }
 
+.mouseElement {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  font-size: 12pt;
+  color: white;
+  cursor: none;
+  mix-blend-mode: difference;
+}
+
 .workInfo {
   position: fixed;
   bottom: var(--spaceSmall);
@@ -255,12 +265,12 @@ ul {
   height: 100vh;
 }
 
-.iframeOverlay {
+/* .iframeOverlay {
   height: calc(100% - 50px);
   width: 100%;
   position: absolute;
   cursor: none;
-}
+} */
 
 /* CONTACT */
 .contactWrapper {
@@ -295,11 +305,27 @@ ul {
   padding-bottom: 23px
 }
 
+.exhibitionHeader {
+  font-size: 12pt;
+  font-variation-settings: "ital" 100;
+  letter-spacing: 0.5px;
+  margin-bottom: 60px;
+}
+
 .italic {
   font-variation-settings: "ital" 100;
 }
 
-@media screen and (max-width: 1000px) {
+.italicLink {
+  font-variation-settings: "ital" 100;
+  text-decoration: underline;
+}
+
+.italicLink:hover {
+  font-variation-settings: "ital" 0
+}
+
+@media screen and (max-width: 1300px) {
   html,
   body {
     font-size: 16px;
