@@ -1,6 +1,7 @@
 :root {
   --spaceSmall: 20px;
   --spaceMedium: 20px;
+  --spaceLarge: 130px;
 
   --foreground: rgb(80, 80, 80);
 }
@@ -265,12 +266,12 @@ ul {
   height: 100vh;
 }
 
-/* .iframeOverlay {
+.iframeOverlay {
   height: calc(100% - 50px);
   width: 100%;
   position: absolute;
   cursor: none;
-} */
+}
 
 /* CONTACT */
 .contactWrapper {
@@ -281,7 +282,7 @@ ul {
   animation: fadeIn 0.5s ease;
   width: 100%;
   height: 100%;
-  padding: 100px var(--spaceMedium) var(--spaceSmall);
+  padding: var(--spaceLarge) var(--spaceSmall) var(--spaceSmall);
 }
 
 .contactInner{
@@ -298,7 +299,7 @@ ul {
   animation: fadeIn 0.5s ease;
   width: 100%;
   height: 100%;
-  padding: 100px var(--spaceMedium) var(--spaceSmall);
+  padding: var(--spaceLarge) var(--spaceMedium) var(--spaceSmall);
 }
 
 .exhibitionInner {
@@ -325,7 +326,7 @@ ul {
   font-variation-settings: "ital" 0
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1400px) {
   html,
   body {
     font-size: 16px;

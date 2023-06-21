@@ -4,13 +4,9 @@ import styles from "@/styles/Nav.module.css";
 import useWindowDimensions from "@/Hooks/useWindowDimensions";
 
 import { useRouter } from "next/router";
+import SocialMedia from "./SocialMedia";
 
-const Nav = ({
-  setClick,
-  showAbout,
-  setShowAbout,
-  setBlocker
-}) => {
+const Nav = ({ setClick, showAbout, setShowAbout, setBlocker }) => {
   const router = useRouter();
   const { windowWidth } = useWindowDimensions();
 
@@ -101,13 +97,7 @@ const Nav = ({
             </Link>
           )}
 
-          <a
-            href="https://www.instagram.com/einankaku/?hl=de"
-            target="blank"
-            rel="noreferrer"
-          >
-            Instagram
-          </a>
+          <SocialMedia />
 
           {router.pathname == "/contact" ? (
             <span

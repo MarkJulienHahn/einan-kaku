@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { PortableText } from "@portabletext/react";
 import { useSwiperSlide, useSwiper } from "swiper/react";
+import useWindowDimensions from "@/Hooks/useWindowDimensions";
 
 const SwiperText = ({ text, setMouseContent }) => {
   const swiper = useSwiper();
   const swiperSlide = useSwiperSlide();
 
+  const { windowHeight } = useWindowDimensions();
+
+  const ref = useRef();
+
+  console.log(ref.current?.clientHeight, windowHeight);
 
   return (
     <div
@@ -21,8 +27,14 @@ const SwiperText = ({ text, setMouseContent }) => {
       }
       onMouseLeave={() => setMouseContent("")}
       className="swiperText"
+      style={{
+        justifyContent:
+          ref.current?.clientHeight < windowHeight ? "center" : "flex-start",
+      }}
     >
-      <PortableText value={text} />
+      <div ref={ref}>
+        <PortableText value={text} />
+      </div>
     </div>
   );
 };

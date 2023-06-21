@@ -47,12 +47,12 @@ const SwiperImage = ({
             //     ? () => swiper.slideNext()
             //     : () => swiper.slidePrev()
             // }
-            // onMouseEnter={
-            //   swiperSlide.isActive || swiperSlide.isNext
-            //     ? () => setMouseContent("unmute")
-            //     : () => setMouseContent("←")
-            // }
-            // onMouseLeave={() => setMouseContent("")}
+            onMouseEnter={
+              swiperSlide.isActive || swiperSlide.isNext
+                ? () => setMouseContent("unmute")
+                : () => setMouseContent("←")
+            }
+            onMouseLeave={() => setMouseContent("")}
           >
             {/* <div ref={buttonRef} style={{ position: "fixed" }}>
               BUTTON
