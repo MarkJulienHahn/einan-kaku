@@ -131,7 +131,7 @@ ul {
   width: 100vw;
   height: 100vh;
   background: white;
-  z-index: 200;
+  z-index: 1000;
   animation: fadeIn 0.3s ease;
 }
 
