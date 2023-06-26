@@ -118,7 +118,7 @@ ul {
   bottom: var(--spaceSmall);
   left: var(--spaceSmall);
   max-width: clamp(300px, 20vw, 700px);
-  /* z-index: 100; */
+  z-index: 300;
 }
 
 .workWrapperMobile {
@@ -311,6 +311,10 @@ ul {
   font-variation-settings: "ital" 100;
   letter-spacing: 0.5px;
   margin-bottom: 60px;
+}
+
+.exhibitionImage {
+padding-top: 9px
 }
 
 .italic {

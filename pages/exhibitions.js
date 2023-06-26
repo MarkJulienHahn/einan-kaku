@@ -2,6 +2,7 @@ import React from "react";
 import client from "@/client";
 
 import About from "../Components/About";
+import Image from "next/image";
 
 const exhibitions = ({ showAbout, setShowAbout, exhibitions, about }) => {
   const heute = new Date();
@@ -27,7 +28,11 @@ const exhibitions = ({ showAbout, setShowAbout, exhibitions, about }) => {
         <div>
           {exhibitions.some(isCurrent) && (
             <>
-              <span className="exhibitionHeader">Current</span>
+              <span className="exhibitionHeader">
+                Current
+                <br />
+                <br />
+              </span>
               {exhibitions.map(
                 (ex, i) =>
                   new Date(ex.beginning) < heute &&
@@ -55,6 +60,22 @@ const exhibitions = ({ showAbout, setShowAbout, exhibitions, about }) => {
                           <div className="italic">{ex.name}</div>, {ex.location}
                         </>
                       )}
+
+                      {ex.image && (
+                        <div className="exhibitionImage">
+                          <div>
+                            <Image
+                              src={ex.image.asset.url}
+                              width={300}
+                              height={400}
+                              style={{
+                                objectFit: "contain",
+                                objectPosition: "left top",
+                              }}
+                            ></Image>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )
               )}
@@ -65,7 +86,11 @@ const exhibitions = ({ showAbout, setShowAbout, exhibitions, about }) => {
         <div>
           {exhibitions.some(isUpcoming) && (
             <>
-              <span className="exhibitionHeader">Upcoming</span>
+              <span className="exhibitionHeader">
+                Upcoming
+                <br />
+                <br />
+              </span>
               {exhibitions.map(
                 (ex, i) =>
                   new Date(ex.beginning) > heute &&
@@ -93,6 +118,22 @@ const exhibitions = ({ showAbout, setShowAbout, exhibitions, about }) => {
                           <div className="italic">{ex.name}</div>, {ex.location}
                         </>
                       )}
+
+                      {ex.image && (
+                        <div className="exhibitionImage">
+                          <div>
+                            <Image
+                              src={ex.image.asset.url}
+                              width={300}
+                              height={400}
+                              style={{
+                                objectFit: "contain",
+                                objectPosition: "left top",
+                              }}
+                            ></Image>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )
               )}
@@ -103,7 +144,11 @@ const exhibitions = ({ showAbout, setShowAbout, exhibitions, about }) => {
         <div>
           {exhibitions.some(isPast) && (
             <>
-              <span className="exhibitionHeader">Past</span>
+              <span className="exhibitionHeader">
+                Past
+                <br />
+                <br />
+              </span>
               {exhibitions.map(
                 (ex, i) =>
                   new Date(ex.beginning) < heute &&
@@ -132,6 +177,22 @@ const exhibitions = ({ showAbout, setShowAbout, exhibitions, about }) => {
                           {ex.location}
                         </>
                       )}
+
+                      {ex.image && (
+                        <div className="exhibitionImage">
+                          <div>
+                            <Image
+                              src={ex.image.asset.url}
+                              width={300}
+                              height={400}
+                              style={{
+                                objectFit: "contain",
+                                objectPosition: "left top",
+                              }}
+                            ></Image>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )
               )}
@@ -147,7 +208,7 @@ export default exhibitions;
 
 export async function getServerSideProps() {
   const exhibitions = await client.fetch(`
-      * [_type == "exhibitions"]|order(orderRank){...}`);
+  * [_type == "exhibitions"]|order(orderRank){..., "image": image{..., "asset": asset->{...}}}`);
   const about = await client.fetch(`
   * [_type == "about"]`);
   return {

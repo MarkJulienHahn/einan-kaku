@@ -12,13 +12,13 @@ const Book = ({ book, mouseContent, setMouseContent, setFocus }) => {
 
   const vh = use100vh();
 
-  console.log(book);
+  console.log(book)
 
   return (
     <div className="vimeoWrapper" style={{ height: vh }}>
       {currentIndex == 0 && (
         <ul className="workInfo">
-          <li>»{book.werkangaben?.titel}« </li>
+          <li>»{book.werkangaben?.titel}«</li>
           <li>
             {book.werkangaben?.jahr} / {book.werkangaben?.medium} /{" "}
             {book.werkangaben?.dimensionen}
@@ -30,7 +30,6 @@ const Book = ({ book, mouseContent, setMouseContent, setFocus }) => {
 
       {book.video ? (
         <>
-          {" "}
           <span className="close" onClick={() => setFocus(null)}>
             ← Back
           </span>
