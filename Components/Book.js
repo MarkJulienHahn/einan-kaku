@@ -12,8 +12,6 @@ const Book = ({ book, mouseContent, setMouseContent, setFocus }) => {
 
   const vh = use100vh();
 
-  console.log(book)
-
   return (
     <div className="vimeoWrapper" style={{ height: vh }}>
       {currentIndex == 0 && (
@@ -29,7 +27,7 @@ const Book = ({ book, mouseContent, setMouseContent, setFocus }) => {
       <MouseElement mouseContent={mouseContent} />
 
       {book.video ? (
-        <>
+        <div className="arbeitWrapper">
           <span className="close" onClick={() => setFocus(null)}>
             ← Back
           </span>
@@ -44,7 +42,7 @@ const Book = ({ book, mouseContent, setMouseContent, setFocus }) => {
               allowfullscreen
             ></iframe>
           </div>
-        </>
+        </div>
       ) : (
         <div className="arbeitWrapper">
           <span className="close" onClick={() => setFocus(null)}>

@@ -20,7 +20,7 @@ import Contact from "@/Components/Contact";
 const Index = ({
   click,
   setClick,
-  arbeit,
+  arbeiten,
   about,
   mouseContent,
   setMouseContent,
@@ -119,13 +119,13 @@ const Index = ({
       {router.query?.image &&
         (windowWidth > 1000 ? (
           <Arbeit
-            image={arbeit[router.query.image]}
+            image={arbeiten[router.query.image]}
             mouseContent={mouseContent}
             setMouseContent={setMouseContent}
           />
         ) : (
           <ArbeitMobile
-            image={arbeit[router.query.image]}
+            image={arbeiten[router.query.image]}
             mouseContent={mouseContent}
             setMouseContent={setMouseContent}
           />
@@ -164,7 +164,7 @@ const Index = ({
           className="workWrapper"
           ref={ref}
         >
-          {arbeit.map((image, i) => (
+          {arbeiten.map((image, i) => (
             <ImagePreview
               key={i}
               image={image}
@@ -181,7 +181,7 @@ const Index = ({
         </div>
         <div style={{ height: vh }} className="workWrapperMobile">
           <Swiper slidesPerView={1.6} centeredSlides={true} spaceBetween={40}>
-            {arbeit.map((image, i) => (
+            {arbeiten.map((image, i) => (
               <SwiperSlide key={i}>
                 <ImagePreviewMobile image={image} i={i} />
               </SwiperSlide>
@@ -196,13 +196,13 @@ const Index = ({
 export default Index;
 
 export async function getServerSideProps() {
-  const arbeit = await client.fetch(`
+  const arbeiten = await client.fetch(`
     * [_type == "arbeiten"]|order(orderRank){..., "arbeiten": arbeiten[]{..., "bild": bild.asset->{url, "dimensions": metadata.dimensions, "blurHash": metadata.blurHash, originalFilename}}, "titelbild": titelbild.asset->{url, "dimensions": metadata.dimensions, "blurHash": metadata.blurHash, originalFilename}}`);
   const about = await client.fetch(`
   * [_type == "about"]`);
   return {
     props: {
-      arbeit,
+      arbeiten,
       about,
     },
   };
