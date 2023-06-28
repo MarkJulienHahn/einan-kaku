@@ -135,6 +135,18 @@ ul {
   animation: fadeIn 0.3s ease;
 }
 
+.arbeitWrapperVimeo {
+  position: fixed;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+  display: flex;
+  justify-content: center;
+}
+
 .swiper {
   height: 100%;
 }

@@ -27,7 +27,7 @@ const Book = ({ book, mouseContent, setMouseContent, setFocus }) => {
       <MouseElement mouseContent={mouseContent} />
 
       {book.video ? (
-        <div className="arbeitWrapper">
+        <div className="arbeitWrapperVimeo">
           <span className="close" onClick={() => setFocus(null)}>
             ← Back
           </span>
