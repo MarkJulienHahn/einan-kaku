@@ -10,7 +10,7 @@ const SocialMedia = () => {
           style={{ fontVariationSettings: active && `"ital" 100, "wght" 300` }}
           className={styles.socialMediaButton}
         >
-          SocialMedia
+          Social Media
         </span>
       </a>
       {active && (

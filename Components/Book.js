@@ -14,20 +14,19 @@ const Book = ({ book, mouseContent, setMouseContent, setFocus }) => {
 
   return (
     <div className="vimeoWrapper" style={{ height: vh }}>
-      {currentIndex == 0 && (
-        <ul className="workInfo">
-          <li>»{book.werkangaben?.titel}«</li>
-          <li>
-            {book.werkangaben?.jahr} / {book.werkangaben?.medium} /{" "}
-            {book.werkangaben?.dimensionen}
-          </li>
-        </ul>
-      )}
-
       <MouseElement mouseContent={mouseContent} />
 
       {book.video ? (
         <div className="arbeitWrapperVimeo">
+          {currentIndex == 0 && (
+            <ul className="workInfo">
+              <li>»{book.werkangaben?.titel}«</li>
+              <li>
+                {book.werkangaben?.jahr} / {book.werkangaben?.medium} /{" "}
+                {book.werkangaben?.dimensionen}
+              </li>
+            </ul>
+          )}
           <span className="close" onClick={() => setFocus(null)}>
             ← Back
           </span>
@@ -45,6 +44,15 @@ const Book = ({ book, mouseContent, setMouseContent, setFocus }) => {
         </div>
       ) : (
         <div className="arbeitWrapper">
+          {currentIndex == 0 && (
+            <ul className="workInfo">
+              <li>»{book.werkangaben?.titel}«</li>
+              <li>
+                {book.werkangaben?.jahr} / {book.werkangaben?.medium} /{" "}
+                {book.werkangaben?.dimensionen}
+              </li>
+            </ul>
+          )}
           <span className="close" onClick={() => setFocus(null)}>
             ← Back
           </span>

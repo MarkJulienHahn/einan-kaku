@@ -114,9 +114,10 @@ const exhibitions = ({ showAbout, setShowAbout, exhibitions, about }) => {
                           , {ex.location} &#8599;
                         </>
                       ) : (
-                        <>
-                          <div className="italic">{ex.name}</div>, {ex.location}
-                        </>
+                        <p>
+                          <span className="italic">{ex.name}</span>,{" "}
+                          {ex.location}
+                        </p>
                       )}
 
                       {ex.image && (
@@ -172,17 +173,17 @@ const exhibitions = ({ showAbout, setShowAbout, exhibitions, about }) => {
                           , {ex.location} &#8599;
                         </>
                       ) : (
-                        <>
+                        <p>
                           <span className="italic">{ex.name}</span>,{" "}
                           {ex.location}
-                        </>
+                        </p>
                       )}
 
-                      {ex.image && (
+                      {ex.image.asset?.url && (
                         <div className="exhibitionImage">
                           <div>
                             <Image
-                              src={ex.image.asset.url}
+                              src={ex.image.asset?.url}
                               width={300}
                               height={400}
                               style={{

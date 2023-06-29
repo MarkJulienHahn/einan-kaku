@@ -63,7 +63,7 @@
   .options {
     position: absolute;
     bottom: 50px;
-    height: 84px;
+    transform: translateY(-20px);
     width: 100vw;
     display: flex;
     justify-content: center;
