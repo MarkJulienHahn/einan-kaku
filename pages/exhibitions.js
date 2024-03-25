@@ -120,7 +120,7 @@ const exhibitions = ({ showAbout, setShowAbout, exhibitions, about }) => {
                         </p>
                       )}
 
-                      {ex.image && (
+                      {ex.image.asset && (
                         <div className="exhibitionImage">
                           <div>
                             <Image
