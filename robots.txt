@@ -1,0 +1,12 @@
+# Allow all bots to crawl everything
+User-agent: *
+Disallow:
+
+# Block specific directories or pages (adjust according to your site structure)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /cgi-bin/
+
+# Block specific bots if needed
+User-agent: BadBot
+Disallow: /
