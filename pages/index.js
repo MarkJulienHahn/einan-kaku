@@ -105,11 +105,14 @@ const Index = ({
   return (
     <>
       <Head>
-        <title>Einan Kaku</title>
-        <meta name="description" content="" />
+        <title>Einan Kaku - Stuttgart-Based Contemporary Artist</title>
+        <meta name="description" content="Explore the works of Einan Kaku, a contemporary artist based in Stuttgart, specializing in digital and physical installations." />
+        <meta name="keywords" content="Einan Kaku, Stuttgart artist, contemporary art, digital installations, physical art, artwork gallery, modern art, creative projects" />
+        <meta property="og:title" content="Einan Kaku - Stuttgart-Based Contemporary Artist" />
+        <meta property="og:description" content="Visit Einan Kaku's official website to view digital and physical installations from a renowned contemporary artist based in Stuttgart." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <meta charset="utf-8" />
+        <meta charSet="utf-8" />
       </Head>
 
       {mouseContent && <MouseElement mouseContent={mouseContent} />}
